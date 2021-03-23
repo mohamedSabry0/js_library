@@ -9,7 +9,35 @@
 </head>
 <body>
   <div class="container">
-    
+    <button class="btn-add-book">Add Book</button>
+    <div class="book-form">
+      <label for="book-title">
+        Title
+        <input type="text" name="book-title" id="book-title">
+      </label><br>
+      <label for="book-author">
+        Author
+        <input type="text" name="book-author" id="book-author">
+      </label><br>
+      <label for="book-description">
+        Description
+        <input type="text" name="book-description" id="book-description">
+      </label><br>
+      <label for="book-pages">
+        Number of pages
+        <input type="number" name="book-pages" id="book-pages">
+      </label><br>
+      <p>Already read?</p>
+      <label for="book-read-true">
+        Yes
+        <input type="radio" name="book-read" id="book-read-true">
+      </label>
+      <label for="book-read-false">
+        No
+        <input type="radio" name="book-read" id="book-read-false">
+      </label><br>
+      <button class="btn-save-book">Save book</button>
+    </div>
   </div>
   <script src="main.js"></script> 
 </body>
