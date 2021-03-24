@@ -4,9 +4,7 @@
 
 > A simple app to create a library using DOM manipulation.
 
-![screenshot](./app_screenshot.png)
-
-Additional description about the project and its features.
+![screenshot](./screenshot.png)
 
 ## Built With
 
