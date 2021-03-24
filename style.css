@@ -23,6 +23,8 @@ font-family: -apple-system, BlinkMacSystemFont,
   align-items: center;
   padding: 2rem;
   margin-top: 0.5rem;
+  border: 1px solid #444;
+  border-radius: 1rem;
 }
 
 label {
@@ -43,7 +45,7 @@ input {
 
 .book-card {
   margin: 2rem 0;
-  padding: 1rem;
-  box-shadow: 0 0 0.5rem #0008;
-  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 0 0.5rem #0004;
+  border-radius: 1rem;
 }
