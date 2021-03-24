@@ -1,6 +1,7 @@
 const btnAddBook = document.querySelector('.btn-add-book');
 const bookForm = document.querySelector('.book-form');
 const btnSaveBook = document.querySelector('.btn-save-book');
+const cardsContainer = document.querySelector('.cards-container');
 
 let myLibrary = [];
 
@@ -11,20 +12,23 @@ class Book {
     this.description = description;
     this.num_of_pages = num_of_pages;
     this.read = read;
+  } 
+  changeReadStatus = function() {
+    this.read = !this.read;
   }
 }
 
 function addBookToLibrary() {
-
+  
 }
 
 
 btnAddBook.addEventListener('click', () => {
-  if (bookForm.style.display === 'none') {
-    bookForm.style.display = 'block';
+  if (bookForm.style.display === 'block') {
+    bookForm.style.display = 'none';
   }
   else {
-    bookForm.style.display = 'none';
+    bookForm.style.display = 'block';
   }
 })
 
@@ -35,9 +39,8 @@ myLibrary.push(first_book);
 myLibrary.push(second_book);
 
 function removeBook(index) {
-  console.log(myLibrary);
   myLibrary.splice(index, 1);
-  console.log(myLibrary);
+  displayBooks(myLibrary);
 }
 
 function createCard(book, index) {
@@ -56,26 +59,32 @@ function createCard(book, index) {
   let num_of_pages = document.createElement('p');
   num_of_pages.textContent = book.num_of_pages;
   
-  let read = document.createElement('p');
-  read.textContent = book.read;
+  let btnReadBook = document.createElement('button');
+  btnReadBook.textContent = book.read ? 'read' : 'not read';
+  btnReadBook.addEventListener('click', () => {
+    book.changeReadStatus();
+    displayBooks(myLibrary);
+  });
 
   let btnRemoveBook = document.createElement('button');
-  btnRemoveBook.textContent = 'Remove Book'
-  btnRemoveBook.addEventListener('click', removeBook(index));
+  btnRemoveBook.textContent = 'Remove Book';
+  btnRemoveBook.addEventListener('click', () => {
+    removeBook(index);
+  });
 
   card.appendChild(title);
   card.appendChild(author);
   card.appendChild(description);
   card.appendChild(num_of_pages);
-  card.appendChild(read);
+  card.appendChild(btnReadBook);
   card.appendChild(btnRemoveBook);
   return card;
 }
 
 function displayBooks(library) {
-  let container = document.querySelector('.container'); 
+  cardsContainer.innerHTML = '';
   library.forEach((book, index) => {
-      container.appendChild(createCard(book, index));
+      cardsContainer.appendChild(createCard(book, index));
     }
   )
 }
