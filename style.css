@@ -1,4 +1,23 @@
+body {
+font-family: -apple-system, BlinkMacSystemFont,
+ “Segoe UI”, “Roboto”, “Oxygen”,
+ “Ubuntu”, “Cantarell”, “Fira Sans”,
+ “Droid Sans”, “Helvetica Neue”, sans-serif;
+}
+
+.btn {
+  margin-right: 8px;
+  padding: 8px;
+}
+
 .book-form {
   display: none;
   background-color: #eee;
+}
+
+.book-card {
+  margin: 32px;
+  padding: 16px;
+  box-shadow: 0 0 8px #0008;
+  border-radius: 8px;
 }

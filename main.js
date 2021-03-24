@@ -3,8 +3,6 @@ const bookForm = document.querySelector('.book-form');
 const btnSaveBook = document.querySelector('.btn-save-book');
 const cardsContainer = document.querySelector('.cards-container');
 
-let myLibrary = [];
-
 class Book {
   constructor(title, author, description, num_of_pages, read) {
     this.title = title;
@@ -18,25 +16,45 @@ class Book {
   }
 }
 
-function addBookToLibrary() {
-  
-}
+let myLibrary = [];
+
+let first_book = new Book('Sapiens', 'Yuval Noah Harari ', 'interesting book', 400, true);
+let second_book = new Book('Sapiens 2', 'Yuval Noah Harari', 'interesting book', 350, false);
+myLibrary.push(first_book);
+myLibrary.push(second_book);
 
 
-btnAddBook.addEventListener('click', () => {
+function toggleAddBookForm() {
   if (bookForm.style.display === 'block') {
     bookForm.style.display = 'none';
   }
   else {
     bookForm.style.display = 'block';
   }
-})
+}
 
-let first_book = new Book('Sapiens', 'Yuval Noah Harari ', 'interesting book', 400, true);
-let second_book = new Book('Sapiens 2', 'Yuval Noah Harari', 'interesting book', 350, false);
+btnAddBook.addEventListener('click', toggleAddBookForm);
 
-myLibrary.push(first_book);
-myLibrary.push(second_book);
+function addBookToLibrary() {
+  let bookTitle = document.querySelector('#book-title');
+  let bookAuthor = document.querySelector('#book-author');
+  let bookDescription = document.querySelector('#book-description');
+  let bookPages = document.querySelector('#book-pages');
+  let bookRead = document.querySelector('input[name = "book-read"]:checked');
+  newBook = new Book(bookTitle.value, bookAuthor.value, bookDescription.value, bookPages.value, bookRead.value);
+  myLibrary.push(newBook);
+
+  bookTitle.value = '';
+  bookAuthor.value = '';
+  bookDescription.value = '';
+  bookPages.value = '';
+  bookRead.checked = false;
+
+  displayBooks(myLibrary);
+  toggleAddBookForm();
+}
+
+btnSaveBook.addEventListener('click', addBookToLibrary);
 
 function removeBook(index) {
   myLibrary.splice(index, 1);
@@ -46,6 +64,7 @@ function removeBook(index) {
 function createCard(book, index) {
   let card = document.createElement('div');
   card.setAttribute('data-index', index);
+  card.classList.add('book-card');
 
   let title = document.createElement('h2');
   title.textContent = book.title;
@@ -61,6 +80,7 @@ function createCard(book, index) {
   
   let btnReadBook = document.createElement('button');
   btnReadBook.textContent = book.read ? 'read' : 'not read';
+  btnReadBook.classList.add('btn');
   btnReadBook.addEventListener('click', () => {
     book.changeReadStatus();
     displayBooks(myLibrary);
@@ -68,6 +88,7 @@ function createCard(book, index) {
 
   let btnRemoveBook = document.createElement('button');
   btnRemoveBook.textContent = 'Remove Book';
+  btnRemoveBook.classList.add('btn');
   btnRemoveBook.addEventListener('click', () => {
     removeBook(index);
   });
