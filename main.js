@@ -25,11 +25,11 @@ myLibrary.push(second_book);
 
 
 function toggleAddBookForm() {
-  if (bookForm.style.display === 'block') {
+  if (bookForm.style.display === 'flex') {
     bookForm.style.display = 'none';
   }
   else {
-    bookForm.style.display = 'block';
+    bookForm.style.display = 'flex';
   }
 }
 

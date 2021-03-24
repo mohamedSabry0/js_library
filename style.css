@@ -5,19 +5,45 @@ font-family: -apple-system, BlinkMacSystemFont,
  “Droid Sans”, “Helvetica Neue”, sans-serif;
 }
 
+.container {
+  padding: 2rem;
+}
+
 .btn {
-  margin-right: 8px;
-  padding: 8px;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
 }
 
 .book-form {
   display: none;
   background-color: #eee;
+  flex-direction: column;
+  width: 30%;
+  min-width: 540px;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 0.5rem;
+}
+
+label {
+  display: flex;
+  width: 75%;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0.5rem 0;
+}
+
+.radio-btns {
+  width: 15%;
+}
+
+input {
+  margin: 0 0.25rem;
 }
 
 .book-card {
-  margin: 32px;
-  padding: 16px;
-  box-shadow: 0 0 8px #0008;
-  border-radius: 8px;
+  margin: 2rem 0;
+  padding: 1rem;
+  box-shadow: 0 0 0.5rem #0008;
+  border-radius: 0.5rem;
 }
