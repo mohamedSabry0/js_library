@@ -4,12 +4,12 @@ const btnSaveBook = document.querySelector('.btn-save-book');
 const cardsContainer = document.querySelector('.cards-container');
 
 class Book {
-  constructor(title, author, description, numOfPages, read) {
-    this.title = title;
-    this.author = author;
-    this.description = description;
-    this.numOfPages = numOfPages;
-    this.read = read;
+  constructor(book) {
+    this.title = book.title;
+    this.author = book.author;
+    this.description = book.description;
+    this.numOfPages = book.numOfPages;
+    this.read = book.read;
   }
 
   changeReadStatus() {
@@ -17,17 +17,37 @@ class Book {
   }
 }
 
+const book1 = {
+  title: 'Homo Deus: A Brief History of Tomorrow',
+  author: 'Yuval Noah Harari ',
+  description: 'Sapiens describes human development through a framework of three “Revolutions”: the Cognitive, the Agricultural, and the Scientific.',
+  numOfPages: 400,
+  read: true
+}
+
+  const book2 = {
+    title: 'Sapiens: A Brief History of Humankind',
+    author: 'Yuval Noah Harari ',
+    description: 'Homo Deus explores the projects, dreams, and nightmares that will shape the twenty-first century, from overcoming death to creating artificial life.',
+    numOfPages: 350,
+    read: false
+  }
+
+let firstBook = new Book(book1);
+let secondBook = new Book(book2);
+
 let myLibrary = [];
 
 function checkStorage() {
   if (localStorage.getItem('library') == null) {
-    const firstBook = new Book('Sapiens: A Brief History of Humankind', 'Yuval Noah Harari ', 'Sapiens describes human development through a framework of three “Revolutions”: the Cognitive, the Agricultural, and the Scientific.', 400, true);
-    const secondBook = new Book('Homo Deus: A Brief History of Tomorrow', 'Yuval Noah Harari', 'Homo Deus explores the projects, dreams, and nightmares that will shape the twenty-first century, from overcoming death to creating artificial life.', 350, false);
     myLibrary.push(firstBook);
     myLibrary.push(secondBook);
     localStorage.setItem('library', JSON.stringify(myLibrary));
   } else {
-    myLibrary = JSON.parse(localStorage.getItem('library'));
+    myLibrary = JSON.parse(localStorage.getItem('library')).map(book => {
+      return new Book(book)
+    });
+
   }
 }
 
@@ -59,11 +79,14 @@ function addBookToLibrary() {
   const bookDescription = document.querySelector('#book-description');
   const bookPages = document.querySelector('#book-pages');
   const bookRead = document.querySelector('input[name = "book-read"]:checked');
-  const newBook = new Book(bookTitle.value,
-    bookAuthor.value,
-    bookDescription.value,
-    bookPages.value,
-    bookRead.value);
+  const newBook = new Book({
+    title: bookTitle.value,
+    author: bookAuthor.value,
+    description: bookDescription.value,
+    numOfPages: bookPages.value,
+    read: bookRead.value
+  });
+
   myLibrary.push(newBook);
   updateStorage();
   bookTitle.value = '';
