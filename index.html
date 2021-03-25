@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>JS-Library</title>
+</head>
+<body>
+  <div class="container">
+    <button class="btn-add-book btn">Add Book</button>
+    <div class="book-form">
+      <label for="book-title">
+        Title
+        <input type="text" name="book-title" id="book-title">
+      </label>
+      <label for="book-author">
+        Author
+        <input type="text" name="book-author" id="book-author">
+      </label>
+      <label for="book-description">
+        Description
+        <input type="text" name="book-description" id="book-description">
+      </label>
+      <label for="book-pages">
+        Number of pages
+        <input type="number" name="book-pages" id="book-pages">
+      </label>
+      <p>Already read?</p>
+      <label for="book-read-true" class="radio-btns">
+        Yes
+        <input type="radio" name="book-read" id="book-read-true" value="true">
+      </label>
+      <label for="book-read-false" class="radio-btns">
+        No
+        <input type="radio" name="book-read" id="book-read-false" value="false">
+      </label>
+      <button class="btn-save-book btn">Save book</button>
+    </div>
+    <div class="cards-container"></div>
+  </div>
+  <script src="main.js"></script> 
+</body>
+</html>
