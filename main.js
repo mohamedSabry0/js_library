@@ -22,19 +22,19 @@ const book1 = {
   author: 'Yuval Noah Harari ',
   description: 'Sapiens describes human development through a framework of three “Revolutions”: the Cognitive, the Agricultural, and the Scientific.',
   numOfPages: 400,
-  read: true
-}
+  read: true,
+};
 
-  const book2 = {
-    title: 'Sapiens: A Brief History of Humankind',
-    author: 'Yuval Noah Harari ',
-    description: 'Homo Deus explores the projects, dreams, and nightmares that will shape the twenty-first century, from overcoming death to creating artificial life.',
-    numOfPages: 350,
-    read: false
-  }
+const book2 = {
+  title: 'Sapiens: A Brief History of Humankind',
+  author: 'Yuval Noah Harari ',
+  description: 'Homo Deus explores the projects, dreams, and nightmares that will shape the twenty-first century, from overcoming death to creating artificial life.',
+  numOfPages: 350,
+  read: false,
+};
 
-let firstBook = new Book(book1);
-let secondBook = new Book(book2);
+const firstBook = new Book(book1);
+const secondBook = new Book(book2);
 
 let myLibrary = [];
 
@@ -44,10 +44,7 @@ function checkStorage() {
     myLibrary.push(secondBook);
     localStorage.setItem('library', JSON.stringify(myLibrary));
   } else {
-    myLibrary = JSON.parse(localStorage.getItem('library')).map(book => {
-      return new Book(book)
-    });
-
+    myLibrary = JSON.parse(localStorage.getItem('library')).map((book) => new Book(book));
   }
 }
 
@@ -84,7 +81,7 @@ function addBookToLibrary() {
     author: bookAuthor.value,
     description: bookDescription.value,
     numOfPages: bookPages.value,
-    read: bookRead.value
+    read: bookRead.value,
   });
 
   myLibrary.push(newBook);
