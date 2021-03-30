@@ -47,7 +47,7 @@ const theLibrary = (()=>{
       }
     }
       
-    function updateStorage() {
+    const updateStorage= () => {
       localStorage.setItem('library', JSON.stringify(myLibrary));
     }
     return{
@@ -65,27 +65,27 @@ const theLibrary = (()=>{
     const bookForm = document.querySelector('.book-form');
     
     const getData = ()=>{
-      const bookTitle = document.querySelector('#book-title');
-      const bookAuthor = document.querySelector('#book-author');
-      const bookDescription = document.querySelector('#book-description');
-      const bookPages = document.querySelector('#book-pages');
-      const bookRead = document.querySelector('input[name = "book-read"]:checked');
+      const title = document.querySelector('#book-title');
+      const author = document.querySelector('#book-author');
+      const description = document.querySelector('#book-description');
+      const numOfPages = document.querySelector('#book-pages');
+      const read = document.querySelector('input[name = "book-read"]:checked');
       return {
-        bookForm,
-        bookTitle,
-        bookAuthor,
-        bookDescription,
-        bookPages,
-        bookRead
+        title,
+        author,
+        description,
+        numOfPages,
+        read
       };
     }
 
-    const resetForm = (fields) => {
-      fields.bookTitle.value = '';
-      fields.bookAuthor.value = '';
-      fields.bookDescription.value = '';
-      fields.bookPages.value = '';
-      fields.bookRead.checked = false;
+    const resetForm = () => {
+      let {title, author, description, numOfPages, read} = getData();
+      title.value = '';
+      author.value = '';
+      description.value = '';
+      numOfPages.value = '';
+      read.checked = false;
     }
     
     const toggleAddBookForm = () => {
@@ -97,18 +97,20 @@ const theLibrary = (()=>{
     }
     
     const createBook = () => {
-      const fields = getData();
+      console.log('create');
+      let [title, author, description, numOfPages, read] = Object.values(getData()).map(el => el.value);
+      read = read == 'true';
       const newBook = new Book({
-        title: fields.bookTitle.value,
-        author: fields.bookAuthor.value,
-        description: fields.bookDescription.value,
-        numOfPages: fields.bookPages.value,
-        read: fields.bookRead.value == 'true'
-      })
+        title,
+        author,
+        description,
+        numOfPages,
+        read
+      });
 
-      resetForm(fields);
-      toggleAddBookForm();
       myStorage.addBookToLibrary(newBook);
+      toggleAddBookForm();
+      resetForm();
     }
     
     btnSaveBook.addEventListener('click', createBook);
